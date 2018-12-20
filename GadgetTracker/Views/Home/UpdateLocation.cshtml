@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Update Gadget Location";
+    var allGadgets = (List<Object>)ViewData["allGadgets"];
+    var locations = (List<GadgetLocation>)ViewData["locations"];
+}
+
+<h2>Update a Gadget Location</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HandleUpdateLocation">
+            <div class="form-group">
+                <label for="gadgetId" class="control-label">What Gadget do you want to update?</label>
+                @Html.DropDownList("gadgetId", new SelectList(allGadgets, "gadgetId", "Name"), "Select a gadget", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="locationId" class="control-label">Where is the gadget located?</label>
+                @Html.DropDownList("locationId", new SelectList(locations, "Id", "Name"), "Select a location", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update Location" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@{
+    var AllGadgets = (List<Gadget>)ViewData["AllGadgets"];
+    var AllHouseholds = (List<Household>)ViewData["AllHouseholds"];
+    var GadgetsId = (List<Gadget>)ViewData["GadgetsID"];
+    if (GadgetsId == null)
+    {
+
+        GadgetsId = new List<Gadget>();
+        // Gadget g = new Gadget();
+        //g.Name = "Please select a Household";
+        // g.Type = "";
+        // g.Id = -1;
+        // g.GadgetLocation = new GadgetLocation();
+        // g.Roommate = new Roommate();
+        // GadgetsId.Add(g);
+    }
+
+}
+
+<h2>Household Gadget Tracker</h2>
+<form asp-action="HandleViewHousehold">
+    <div class="form-group">
+        <label for="householdId" class="control-label"></label>
+        <select class="form-control" name="householdId">
+            <option value="">Select a household</option>
+            @foreach (Household house in AllHouseholds)
+            {
+                <option value="@house.Id">@house.Name </option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="View Household" class="btn btn-default" />
+    </div>
+</form>
+
+<h2>Household Information: </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Gadget Name
+            </th>
+            <th>
+                Gadget Type
+            </th>
+            <th>
+                Gadget Location
+            </th>
+            <th>
+                Gadget Owned By
+            </th>
+        </tr>
+    </thead>
+    @foreach (Gadget g in GadgetsId)
+    {
+        <tr>
+            <td>
+                @g.Name
+            </td>
+            <td>
+                @g.Type
+            </td>
+            <td>
+                @g.GadgetLocation.Name
+            </td>
+            <td>
+                @g.Roommate.f_name @g.Roommate.l_name
+            </td>
+        </tr>
+    }
+</table>

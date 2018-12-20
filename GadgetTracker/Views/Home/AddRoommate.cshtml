@@ -1,0 +1,68 @@
+﻿@model List<Household>
+@{
+    ViewData["Title"] = "Roommates";
+}
+
+
+
+@foreach (Household hh in Model)
+{
+    <h4>@hh.Name</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Roommate First Name
+                </th>
+                <th>
+                    Roommate Last Name
+                </th>
+                <th>
+                    Roommate Age
+                </th>
+            </tr>
+        </thead>
+        @foreach (Roommate r in hh.Roommates)
+        {
+            <tr>
+                <td>
+                    @r.f_name
+                </td>
+                <td>
+                    @r.l_name
+                </td>
+                <td>
+                    @r.age
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<h2>Add a Roommate</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HandleNewRoommate">
+            <div class="form-group">
+                <label for="hh" class="control-label">Choose a Household</label>
+                @Html.DropDownList("hh", new SelectList(Model, "Id", "Name"), "Select a Household", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="fname" class="control-label">Roommate First Name</label>
+                <input name="fname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="lname" class="control-label">Roommate Last Name</label>
+                <input name="lname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="a" class="control-label">Roommate Age</label>
+                <input name="a" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Roommate" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

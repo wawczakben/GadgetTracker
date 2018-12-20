@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Add a Gadget";
+    var roommateNames = (List<Object>)ViewData["roommateNames"];
+    var locations = (List<GadgetLocation>)ViewData["locations"];
+}
+
+<h2>Add a Gadget</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HandleNewGadget">
+            <div class="form-group">
+                <label for="n" class="control-label">Gadget Name</label>
+                <input name="n" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="t" class="control-label">Gadget Type (i.e. "Headphones" or "Laptop")</label>
+                <input name="t" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="roommateId" class="control-label">What Roommate does it belong to?</label>
+                @Html.DropDownList("roommateId", new SelectList(roommateNames, "roommateId", "fName"), "Select a roommate", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="locationId" class="control-label">Where is the gadget located?</label>
+                @Html.DropDownList("locationId", new SelectList(locations, "Id", "Name"), "Select a location", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add a new Gadget" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Delete a Gadget";
+    var allGadgets = (List<Object>)ViewData["allGadgets"];
+}
+
+<h2>Delete a Gadget</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HandleDeleteGadget">
+            <div class="form-group">
+                <label for="gadgetId" class="control-label">What Gadget do you want to delete?</label>
+                @Html.DropDownList("gadgetId", new SelectList(allGadgets, "gadgetId", "Name"), "Select a gadget", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Delete Gadget" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
